@@ -35,7 +35,7 @@ body, html {
 }
 
 .mdui-icon-large {
-  font-size: 5rem; /* 设置大图标大小 */
+  font-size: 5rem !important; /* 设置大图标大小 */
 }
 
 .card-container {
@@ -76,11 +76,6 @@ body, html {
   color: #fff !important;
 }
 
-/* 设置 hitokoto 文本的颜色 */
-#hitokoto {
-  color: #fff !important;
-}
-
 /* 控制 MDUI 卡片的全局圆角样式（请注意：如果卡片元素设置了单独的内联样式或具有更高优先级的CSS规则，则此全局设置可能被覆盖） */
 .mdui-card {
   /* 设置卡片默认圆角数值，更圆润的是 10 px */
@@ -89,7 +84,7 @@ body, html {
 
 /* 图标、标题、副标题居中 */
 .custom-width-card {
-  width: 300px; /* 自定义宽度，根据需要调整 */
+  width: 150px; /* 自定义宽度，根据需要调整 */
 }
 
 .mdui-card-primary-content {
