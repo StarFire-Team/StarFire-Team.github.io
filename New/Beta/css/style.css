@@ -1,0 +1,106 @@
+/* 此部分的代码使用 `通义灵码` 编写，本人(KFACBT)只添加了注释 */
+/* 背景样式 */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  /* overflow: hidden; */ /* 防止滚动条出现 */
+}
+
+.video-background {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+    
+  /* 注释部分是自适应视频背景的代码 */
+  min-width: 100%;
+    
+  /* 下方两行是视频根据容器宽度进行等比缩放的代码 */
+  /* width: 100%; 
+  height: auto; */
+
+  min-height: 100%;
+  z-index: -1;
+  opacity: 0.5; /* 背景视频的不透明度，可调整 */
+
+  /* 下方是自适应视频背景的代码 */
+  background-size: cover;
+}
+/* 通义灵码部分结束 */
+
+
+.mdui-icon-grayscale {
+  color: rgba(0, 0, 0, 0.38); /* 或者自定义一个灰色值 */
+}
+
+.mdui-icon-large {
+  font-size: 5rem; /* 设置大图标大小 */
+}
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap; /* 允许换行 */
+  justify-content: space-between; /* 两端对齐，卡片之间有间距 */
+}
+
+.custom-width-card {
+  /* width: calc(33% - 20px); */ /* 设置卡片宽度为父容器宽度的三分之一减去适当间距，这里假设每个卡片左右间距各为10px */
+
+  flex: 1 0 auto; /* 自适应宽度，每个卡片占据相等的空间 */
+   margin: 10px; /* 添加适当的左右间距 */
+}
+
+/* 代码作用：更改顶栏文本颜色为白色 */
+
+/* 更改顶栏文本颜色 */
+.mdui-appbar a,
+.mdui-appbar span {
+  color: #fff !important;
+}
+
+.mdui-appbar button.mdui-btn {
+  /* 保持按钮颜色不变（如果需要） */
+  .mdui-appbar button.mdui-btn {
+    color: initial; /* 使用MDUI默认颜色，或自定义其他颜色 */
+  }
+}
+
+/* 单独修改顶栏内MDUI图标的颜色 */
+.mdui-appbar i.mdui-icon {
+  color: #ffffff !important; /* 将此处的颜色值替换为你想要的颜色 */
+}
+
+/* 设置底部栏中按钮的文字颜色 */
+.mdui-bottom-nav a.mdui-btn {
+  color: #fff !important;
+}
+
+/* 设置 hitokoto 文本的颜色 */
+#hitokoto {
+  color: #fff !important;
+}
+
+/* 控制 MDUI 卡片的全局圆角样式（请注意：如果卡片元素设置了单独的内联样式或具有更高优先级的CSS规则，则此全局设置可能被覆盖） */
+.mdui-card {
+  /* 设置卡片默认圆角数值，更圆润的是 10 px */
+  border-radius: 5px;
+}
+
+/* 图标、标题、副标题居中 */
+.custom-width-card {
+  width: 300px; /* 自定义宽度，根据需要调整 */
+}
+
+.mdui-card-primary-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 100%;
+}
+
+.mdui-icon-large {
+  margin-bottom: 10px; /* 为图标和标题之间添加间距 */
+}

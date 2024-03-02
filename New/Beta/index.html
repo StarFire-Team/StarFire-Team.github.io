@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+    <title>星火工具箱 - 一款轻量级的工具箱</title>
+    <meta name="keywords" content="星火工具箱,CJA-RAMOS">
+    <meta name="description" content="星火工具箱 - 一款轻量级的工具箱">
+    <link rel="stylesheet" href="css/docs-v17.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/mdui.min.css" />
+
+    <!-- 引入 Style 文件 -->
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+
+    <script src="js/mdui.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+
+    <audio id="backgroundMusic" src="./Resources/Music/BackgroundMusic.m4a" loop style="display:none;"></audio>
+
+    <!-- 放置网站图标 -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+</head>
+<!-- v1.0，无背景(目前视频背景需要用到它,以设置顶栏的颜色) -->
+<!-- <body class="mdui-bottom-nav-fixed mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto mdui-loaded"> -->
+<!-- v1.1，有背景(自定义图片) -->
+<!-- <body class="mdui-bottom-nav-fixed mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto mdui-loaded" style="background-image: url('./images/CardBackground1.png'); background-size: cover;"></body> -->
+
+<!-- v1.2，更改了顶栏的文本颜色 -->
+<body class="mdui-bottom-nav-fixed mdui-appbar-with-toolbar mdui-theme-primary-blue mdui-theme-accent-blue mdui-theme-layout-auto mdui-loaded">
+
+    <!-- 视频背景 -->
+    <video class="video-background" autoplay loop muted playsinline>
+        <source src="./Resources/Video/Background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <header id="appbar" class="mdui-appbar mdui-appbar-fixed">
+        <div class="mdui-toolbar mdui-color-theme">
+            <span class="mdui-btn mdui-btn-icon mdui-ripple mdui-ripple-white " mdui-drawer="{target: '#main-drawer','overlay':true}">
+                <i class="mdui-icon material-icons">menu</i>
+            </span>
+            <a href="index.html" class="mdui-typo-headline mdui-hidden-xs">
+                星火工具箱
+            </a>
+            <p class="mdui-typo-title" style="color: white;"> - </p>
+            <a href="index.html#" class="mdui-typo-title">首页</a>
+
+            <div class="mdui-toolbar-spacer"></div>
+
+                <!-- 原先版本不会自动切换音乐图标 -->
+                <!-- <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '背景音乐'}" onclick="toggleBackgroundMusic()">
+                    <i class="mdui-icon material-icons">music_note</i>
+                </a> -->
+                <!-- 这个版本会自动切换音乐图标 -->
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '背景音乐'}" onclick="toggleBackgroundMusic()">
+                    <i id="musicIcon" class="mdui-icon material-icons">music_note</i>
+                </a>
+                <!-- 保留一个原版写法 -->
+                <!-- <a href="javascript:;" class="mdui-btn mdui-btn-icon">
+                    <i class="mdui-icon material-icons">refresh</i>
+                </a> -->
+                <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-tooltip="{content: '刷新此页'}" onclick="refreshPage()">
+                    <i class="mdui-icon material-icons">refresh</i>
+                </a>
+            </div>
+        </div>    
+    <!-- 菜单元素 -->
+
+    </header>
+    <div class="mdui-drawer mdui-color-white mdui-drawer-full-height mdui-drawer-close" id="main-drawer">
+        <div class="mdui-card-media mdui-ripple mdui-ripple-white">
+            <!-- 设置菜单背景 -->
+            <img src="./images/background.jpg" />
+
+            <div class="mdui-card-media-covered mdui-card-media-covered-gradient">
+                <div class="mdui-card-primary" style="position:relative;">
+                    <img style="width:30%; border-radius: 16px;" src="./images/Logo.jpg">
+                    <br>
+                    <div class="mdui-typo-title mdui-text-color-white drawer-title-text">沐雨服务器</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mdui-list" style="margin-bottom: 76px;">
+            <div class="mdui-list">
+                <a href="./index.html" class="mdui-list-item mdui-ripple" style="border-radius: 16px;">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">home</i>
+                    <div class="mdui-list-item-content">首页</div>
+                </a>
+                <a href="./Announcement.html" class="mdui-list-item mdui-ripple" style="border-radius: 16px;">
+                    <i class="mdui-list-item-icon mdui-icon material-icons">assignment</i>
+                    <div class="mdui-list-item-content">
+                        公告
+                    </div>
+                </a>
+
+            </div>
+            <div class="copyright">
+                <div class="mdui-typo">
+                    <p class="mdui-typo-caption-opacity">© 2023 <a href="https://space.bilibili.com/514279030" target="_blank">KFACBT</a></p>
+					<p class="mdui-typo-caption-opacity">友情链接： <a href="about:blank" target="_blank">空</a></p>
+                    <p class="mdui-typo-caption-opacity">
+                        Powered by <a href="https://mdui.org" target="_blank">MDUI</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hide">
+    </div>
+    <div id="page-index" class="mdui-container">
+        <div class="banner">
+
+            <h1><strong>沐雨世界 MUYUCRAFT</strong></h1>
+            <div style='height:10px'></div>
+            <div class="meta">
+                <div style='height:12px'></div>一个新时代的 <strong>我的世界服务器</strong>，服务器进步从未停滞<br><br>QQ 群：<strong>615115748</strong>
+            </div>
+            <!-- <div class="actions">
+                <a href="./Announcement.html" class="mdui-btn mdui-ripple">公告</a>
+            </div> -->
+
+            <div class="actions">
+                <a href="./Announcement.html" class="mdui-btn mdui-ripple">公告</a>
+                <a href="./Join.html" class="mdui-btn mdui-ripple" mdui-tooltip="{content: '与其他玩家一起游戏'}">加入服务器</a>
+
+            </div>
+        </div>
+    </div>
+    <div class="mdui-bottom-nav mdui-color-theme" style="height: 70px;">
+        <div class="mdui-container mdui-valign">
+            <div class="mdui-row mdui-center">
+
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="mdui-container" style="max-width: 800px;">
+        <br>
+        <!-- 原设置 -->
+        <!-- <div class="mdui-card" style="border-radius: 12px;"> -->
+        <!-- 应用全局设置（MDUI 卡片的圆角） -->
+        <div class="mdui-card">
+            <!-- <div class="mdui-card-media">
+                <img src="./images/background.jpg" style="max-height: 300px;object-fit: cover;" />
+            </div> -->
+                <div class="mdui-card-primary">
+                    <div class="mdui-card-primary-title">服务器特色</div>
+                    <div class="mdui-card-primary-subtitle">关于服务器特色</div>
+                </div>
+                <div class="mdui-card-content">
+                
+                    <!-- 使用Flexbox布局的卡片容器 -->
+                    <!-- <div class="card-container"> -->
+            
+                        <!-- 卡片1 -->
+                        <!-- <div class="mdui-card custom-width-card mdui-shadow-2">
+                            <div class="mdui-card-primary">
+                                <i class="mdui-icon material-icons mdui-icon-grayscale mdui-icon-large">thumb_up</i>
+                                <div class="mdui-card-primary-title">有观念的团队</div>
+                                <div class="mdui-card-primary-subtitle">文本-测试-不知道写什么了</div>
+                            </div>
+                        </div> -->
+
+                        <!-- 卡片2 -->
+                        <!-- <div class="mdui-card custom-width-card mdui-shadow-2">
+                            <div class="mdui-card-primary">
+                                <i class="mdui-icon material-icons mdui-icon-grayscale mdui-icon-large">done_all</i>
+                                <div class="mdui-card-primary-title">原版的体验</div>
+                                <div class="mdui-card-primary-subtitle">服务器没有任何Mod，只有插件</div>
+                            </div>
+                        </div> -->
+
+                    <!-- 可以继续添加更多卡片... -->
+
+                        <!-- 卡片3 -->
+                        <!-- <div class="mdui-card custom-width-card mdui-shadow-2">
+                            <div class="mdui-card-primary">
+                                <i class="mdui-icon material-icons mdui-icon-grayscale mdui-icon-large">favorite</i>
+                                <div class="mdui-card-primary-title">和蔼的管理员们</div>
+                                <div class="mdui-card-primary-subtitle">咱主打的就是一友善啊awa</div>
+                            </div>
+                        </div> -->
+
+                        <!-- 卡片3 -->
+                        <!-- <div class="mdui-card custom-width-card mdui-shadow-2">
+                            <div class="mdui-card-primary">
+                                <i class="mdui-icon material-icons mdui-icon-grayscale mdui-icon-large">dns</i>
+                                <div class="mdui-card-primary-title">稳定的服务器</div>
+                                <div class="mdui-card-primary-subtitle">可以保证长时间不掉线</div>
+                            </div>
+                        </div> -->
+
+                        <!-- 结束 -->
+                    <!-- </div> -->
+
+
+
+                    <!-- 使用Flexbox布局的卡片容器 -->
+                    <div class="card-container">
+            
+                        <!-- 卡片1 -->
+                        <div class="mdui-card custom-width-card mdui-shadow-2">
+                            <div class="mdui-card-primary">
+                                <!-- 添加一个div盒子，以应用居中效果 -->
+                                <div class="mdui-card-primary-content">
+                                    <i class="mdui-icon material-icons mdui-icon-grayscale mdui-icon-large">thumb_up</i>
+                                    <div class="mdui-card-primary-title">年轻的管理团队</div>
+                                    <div class="mdui-card-primary-subtitle">管理组都是初高中生qwq</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 卡片2 -->
+                        <div class="mdui-card custom-width-card mdui-shadow-2">
+                            <div class="mdui-card-primary">
+                                <!-- 添加一个div盒子，以应用居中效果 -->
+                                <div class="mdui-card-primary-content">
+                                    <i class="mdui-icon material-icons mdui-icon-grayscale mdui-icon-large">videogame_asset</i>
+                                    <div class="mdui-card-primary-title">多种服务器玩法</div>
+                                    <div class="mdui-card-primary-subtitle">原版生存、模组服、UHC等</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- 可以继续添加更多卡片... -->
+
+                        <!-- 卡片3 -->
+                        <div class="mdui-card custom-width-card mdui-shadow-2">
+                            <div class="mdui-card-primary">
+                                <!-- 添加一个div盒子，以应用居中效果 -->
+                                <div class="mdui-card-primary-content">
+                                    <i class="mdui-icon material-icons mdui-icon-grayscale mdui-icon-large">dns</i>
+                                    <div class="mdui-card-primary-title">充足的算力</div>
+                                    <div class="mdui-card-primary-subtitle">AMD R7-5700X+DDR4 32GB</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 卡片3 -->
+                        <div class="mdui-card custom-width-card mdui-shadow-2">
+                            <div class="mdui-card-primary">
+                                <!-- 添加一个div盒子，以应用居中效果 -->
+                                <div class="mdui-card-primary-content">
+                                    <i class="mdui-icon material-icons mdui-icon-grayscale mdui-icon-large">favorite</i>
+                                    <div class="mdui-card-primary-title">和蔼的管理员们</div>
+                                    <div class="mdui-card-primary-subtitle">咱主打的就是一友善啊awa</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 结束 -->
+                    </div>
+
+                    
+                    
+
+                </div>
+
+            <br>
+    </div>    
+
+
+
+    <div class="mdui-container" style="max-width: 800px;">
+        <br>
+        <!-- <div class="mdui-card" style="border-radius: 12px;"> -->
+        <!-- 应用全局设置（MDUI 卡片的圆角） -->
+        <div class="mdui-card">
+            <!-- <div class="mdui-card-media">
+                <img src="./images/background.jpg" style="max-height: 300px;object-fit: cover;" />
+            </div> -->
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">服务器信息</div>
+                <div class="mdui-card-primary-subtitle">服务器倒计时~~</div>
+
+                
+            </div>
+                <div class="mdui-card-content">
+                
+                    <div class="mdui-card">
+
+                        <!-- 卡片的标题和副标题 -->
+                        <div class="mdui-card-primary">
+                            <!-- 添加一个div盒子，以应用居中效果 -->
+                            <div class="mdui-card-primary-content">
+                                <!-- <div class="mdui-card-primary-title"><h1>沐雨服务器</h1></div> -->
+                                <!-- <div class="mdui-card-primary-title">距开服一周年还有</div> -->
+                                <!-- <div id="year-countdown">距开服一周年还有</div> -->
+                                <h1 id="year-countdown">距开服一周年还有</h1>
+                                <h1 class="countdown">距离指定时间还有...</h1>
+
+                                <a href="./Join.html" class="mdui-btn mdui-ripple" mdui-tooltip="{content: '与其他玩家一起游戏'}">加入服务器</a>
+
+                                <!-- <div class="mdui-card-primary-subtitle">111</div> -->
+                            </div>
+                        </div>
+                  
+                        <!-- 添加一个div盒子，以应用居中效果 -->
+                        <!-- <div class="mdui-card-primary-content"> -->
+                            <!-- 卡片的内容 -->
+                            <!-- <div class="mdui-card-content"> -->
+                                <!-- <h1 class="countdown">距离指定时间还有...</h1> -->
+                            <!-- </div>
+                        </div> -->
+
+                        <!-- 倒计时 v1.0 -->
+                        <!-- <script>
+                            // 指定的日期时间
+                            var targetDate = new Date("2024-01-15T00:00:00").getTime(); // 替换为你想要的时间
+                    
+                            function updateCountdown() {
+                                var now = new Date().getTime();
+                                var distance = targetDate - now;
+                    
+                                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    
+                                document.querySelector('.countdown').innerText = `距离指定时间还有 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+                    
+                                if (distance < 0) {
+                                    clearInterval(countdownInterval);
+                                    document.querySelector('.countdown').innerText = "已到达指定时间！";
+                                }
+                            }
+                    
+                            var countdownInterval = setInterval(updateCountdown, 1000);
+                        </script> -->
+
+                        <!-- 倒计时 & 正计时 v1.0 -->
+                        <!-- <script>
+                            // 指定的日期时间
+                            var targetDate = new Date("2024-01-27T00:00:00").getTime(); // 替换为你想要的时间
+                    
+                            function updateCountdown() {
+                                var now = new Date().getTime();
+                                var distance = now - targetDate; // 计算现在与目标时间的差值，正数表示未来，负数表示过去
+                    
+                                var days = Math.floor(Math.abs(distance) / (1000 * 60 * 60 * 24));
+                                var hours = Math.floor((Math.abs(distance) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                var minutes = Math.floor((Math.abs(distance) % (1000 * 60 * 60)) / (1000 * 60));
+                                var seconds = Math.floor((Math.abs(distance) % (1000 * 60)) / 1000);
+                    
+                                var prefix = distance > 0 ? "距离" : "超过";
+                                document.querySelector('.countdown').innerText = `${prefix}指定时间 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+                    
+                                // 不需要清除定时器，因为我们要持续更新
+                                
+                            }
+                    
+                            setInterval(updateCountdown, 1000);
+                        </script> -->
+
+                        <!-- 倒计时 & 正计时 v1.1 -->
+                        <script>
+                            // 指定的日期时间
+                            var targetDate = new Date("2023-01-27T00:00:00").getTime(); // 设置日期
+                    
+                            function updateCountdown() {
+                                var now = new Date().getTime();
+                                var distance = now - targetDate; // 现在与目标时间的差值，正数表示未来，负数表示过去
+
+                                var days = Math.floor(Math.abs(distance) / (1000 * 60 * 60 * 24));
+                                var hours = Math.floor((Math.abs(distance) % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                var minutes = Math.floor((Math.abs(distance) % (1000 * 60 * 60)) / (1000 * 60));
+                                var seconds = Math.floor((Math.abs(distance) % (1000 * 60)) / 1000);
+
+                                // document.querySelector('.countdown').innerText = `${distance > 0 ? "距离" : "已超过"}指定时间 ${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+                                document.querySelector('.countdown').innerText = `${days} 天 ${hours} 小时 ${minutes} 分钟 ${seconds} 秒`;
+
+                                if (now >= targetDate) { // 判断是否已经到达或超过指定时间
+                                    document.getElementById('year-countdown').innerText = "我们已开服";
+                                }
+                            }
+
+                    
+                            var countdownInterval = setInterval(updateCountdown, 1000);
+                        </script>
+                    </div>
+
+                </div>
+
+        </div>
+
+            <br>
+    </div>
+
+
+
+
+    <div class="mdui-container" style="max-width: 800px;">
+        <br>
+        <!-- 原设置 -->
+        <!-- <div class="mdui-card" style="border-radius: 12px;"> -->
+        <!-- 应用全局设置（MDUI 卡片的圆角） -->
+        <div class="mdui-card">
+
+            <!-- <div class="mdui-card-media">
+                <img src="./images/background.jpg" style="max-height: 300px;object-fit: cover;" />
+            </div> -->
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">创始人</div>
+                <div class="mdui-card-primary-subtitle">这是服务器的创始人</div>
+            </div>
+                <div class="mdui-card-content">
+                
+                    <div class="mdui-card">
+
+                        <!-- 卡片头部，包含头像、标题、副标题 -->
+                        <div class="mdui-card-header">
+                            <img class="mdui-card-header-avatar" src="./images/Peoples/XuanAngGaga.jpg"/>
+                            <div class="mdui-card-header-title">XuanAngGaga</div>
+                            <div class="mdui-card-header-subtitle">沐雨服务器服主</div>
+                        </div>
+                      
+                        <!-- 卡片的媒体内容，可以包含图片、视频等媒体内容，以及标题、副标题 -->
+                        <div class="mdui-card-media">
+                            <!-- <img src="./images/CardBackground1Mini.png"/> -->
+                      
+                            <!-- 卡片中可以包含一个或多个菜单按钮 -->
+                            <div class="mdui-card-menu">
+                                <!-- 原版 -->
+                                <!-- <button class="mdui-btn mdui-btn-icon mdui-text-color-white">
+                                    <i class="mdui-icon material-icons">share</i>
+                                </button> -->
+                                <!-- v1，没有提示 -->
+                                <!-- <button class="mdui-btn mdui-btn-icon mdui-text-color-white">
+                                    <i class="mdui-icon material-icons">launch</i>
+                                </button> -->
+                                <!-- v2，有提示 -->
+                                <!-- <button class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-tooltip="{content: '在新窗口中打开'}" onclick="openNewTab('https://space.bilibili.com/277750003');">
+                                    <i class="mdui-icon material-icons">launch</i>
+                                </button> -->
+
+                                <!-- v3，不调用函数 -->
+                                <!-- <a href="https://space.bilibili.com/277750003" target="_blank" class="mdui-btn mdui-btn-icon mdui-text-color-white" mdui-tooltip="{content: '在新窗口中打开'}">
+                                    <i class="mdui-icon material-icons">launch</i>
+                                </a> -->
+
+                                <!-- 代码没有问题，但是层次上有问题，所以暂时注释 -->
+                            </div>
+                        </div>
+                      
+                        <!-- 卡片的标题和副标题 -->
+                        <div class="mdui-card-primary">
+                            <div class="mdui-card-primary-title">MuyuCraft 是以高版本原版生存为主的《我的世界》第三方服务器</div>
+                            <div class="mdui-card-primary-subtitle">同时拥有模组服与其他业务</div>
+                        </div>
+                      
+                        <!-- 卡片的内容 -->
+                        <!-- <div class="mdui-card-content">文本内容</div> -->
+                      
+                        <!-- 卡片的按钮 -->
+                        <div class="mdui-card-actions">
+                            <!-- 备份 -->
+                            <!-- <button class="mdui-btn mdui-ripple">商务联系</button> -->
+                            <button id="copyButton-QQid" class="mdui-btn mdui-ripple">QQ</button>
+                            <!-- 调用 Script 时即可复制 QQ 号到剪贴板，同时给予用户反馈(弹出Sneakbar) -->
+                            <script>
+                                // 获取指定ID的元素并添加点击事件监听器
+                                document.getElementById('copyButton-QQid').addEventListener('click', function() {
+                            
+                                    // 定义要复制的文本内容
+                                    var textToCopy = '2932289809';
+                            
+                                    // 尝试将文本写入剪贴板
+                                    try {
+                                        navigator.clipboard.writeText(textToCopy);
+                            
+                                        // 复制成功时，在控制台输出成功信息，并显示成功Snackbar
+                                        console.log('文本复制成功！文本内容：' + textToCopy);
+                                        mdui.snackbar({
+                                            message: 'QQ 号已成功复制到剪贴板！',
+                                            position: 'left-bottom'
+                                        });
+                            
+                                    } catch (err) {
+                                        // 复制失败时，在控制台输出错误信息，并显示失败Snackbar
+                                        console.error('复制失败: ', err);
+                                        mdui.snackbar({
+                                            message: '复制 QQ 号到剪贴板时发生错误！',
+                                            position: 'left-bottom'
+                                        });
+                                    }
+                                });
+                            </script>
+                            <button class="mdui-btn mdui-ripple" mdui-tooltip="{content: '在新窗口中打开'}" onclick="openNewTab('https://space.bilibili.com/619806940')">哔哩哔哩</button>
+                            <!-- 想不到实际的用处 -->
+                            <!-- <button class="mdui-btn mdui-btn-icon mdui-float-right">
+                                <i class="mdui-icon material-icons">expand_more</i>
+                            </button> -->
+                        </div>
+                      
+                    </div>
+                  
+                </div>
+
+            </div>
+
+        </div>
+
+            <br>
+    </div>
+
+    <div class="mdui-container" style="max-width: 800px;">
+        <br>
+        <!-- 原设置 -->
+        <!-- <div class="mdui-card" style="border-radius: 12px;"> -->
+        <!-- 应用全局设置（MDUI 卡片的圆角） -->
+        <div class="mdui-card">
+            <!-- <div class="mdui-card-media">
+                <img src="./images/background.jpg" style="max-height: 300px;object-fit: cover;" />
+            </div> -->
+            <div class="mdui-card-primary">
+                <div class="mdui-card-primary-title">关于团队</div>
+                <div class="mdui-card-primary-subtitle">可以查看团队信息</div>
+            </div>
+            <div class="mdui-card-content">
+                
+                <!-- 单张卡片开始 -->
+                <div class="mdui-card">
+
+                    <!-- 卡片头部，包含头像、标题、副标题 -->
+                    <div class="mdui-card-header">
+                         <img class="mdui-card-header-avatar" src="./images/Peoples/XuanAngGaga.jpg"/>
+                         <div class="mdui-card-header-title">XuanAngGaga</div>
+                         <div class="mdui-card-header-subtitle" mdui-tooltip="{content: '沐雨服务器服主'}">沐雨服务器服主</div>
+                    </div>
+                    <div class="mdui-card-content">
+                    
+                        <div class="mdui-typo">
+                            <blockquote>
+                                <!-- <i class="mdui-icon material-icons">format_quote</i> -->
+                                <i class="mdui-icon material-icons" style="color: gray;">format_quote</i>
+                                <p>我爱玩原神，我是芙宁娜的狗</p>
+                                <!-- <footer>马尔克斯 ——《百年孤独》</footer> -->
+                            </blockquote>
+                        </div>
+                    
+                    </div>
+                    <!-- 卡片的按钮 -->
+                    <div class="mdui-card-actions">
+                        <!-- <button class="mdui-btn mdui-ripple">action 1</button> -->
+                        <button class="mdui-btn mdui-ripple" mdui-tooltip="{content: '在新窗口中打开'}" onclick="openNewTab('https://space.bilibili.com/619806940')">哔哩哔哩</button>
+    
+                    </div>
+                         
+                </div>
+                    <br>
+                <!-- 卡片与卡片之间分隔 -->
+
+                <!-- 单张卡片开始 -->
+                <div class="mdui-card">
+
+                    <!-- 卡片头部，包含头像、标题、副标题 -->
+                    <div class="mdui-card-header">
+                         <img class="mdui-card-header-avatar" src="./images/Logo.jpg"/>
+                         <div class="mdui-card-header-title">沐雨服务器 主机</div>
+                         <div class="mdui-card-header-subtitle" mdui-tooltip="{content: '目前托管沐雨服务器主机'}">目前托管沐雨服务器主机</div>
+                    </div>
+                    <div class="mdui-card-content">
+                    
+                        <div class="mdui-typo">
+                            <blockquote>
+                                <!-- <i class="mdui-icon material-icons">format_quote</i> -->
+                                <i class="mdui-icon material-icons" style="color: gray;">format_quote</i>
+                                <p>这个人很懒，什么都没有写(也可能是他没有提交文本)</p>
+                                <!-- <footer>马尔克斯 ——《百年孤独》</footer> -->
+                            </blockquote>
+                        </div>
+                    
+                    </div>
+                    <!-- 卡片的按钮 -->
+                    <div class="mdui-card-actions">
+                        <!-- <button class="mdui-btn mdui-ripple">action 1</button> -->
+                        <button class="mdui-btn mdui-ripple" mdui-tooltip="{content: '在新窗口中打开'}" onclick="openNewTab('https://space.bilibili.com/619806940')" disabled>哔哩哔哩</button>
+    
+                    </div>
+                         
+                </div>
+                    <br>
+                <!-- 卡片与卡片之间分隔 -->
+
+                <!-- 单张卡片开始 -->
+                <div class="mdui-card">
+
+                    <!-- 卡片头部，包含头像、标题、副标题 -->
+                    <div class="mdui-card-header">
+                         <img class="mdui-card-header-avatar" src="./images/Peoples/KFACBT.png"/>
+                         <div class="mdui-card-header-title">KFACBT</div>
+                         <div class="mdui-card-header-subtitle" mdui-tooltip="{content: '目前是沐雨服务器的网页开发者'}">目前是沐雨服务器的网页开发者</div>
+                    </div>
+                    <div class="mdui-card-content">
+                    
+                        <div class="mdui-typo">
+                            <blockquote>
+                                <!-- <i class="mdui-icon material-icons">format_quote</i> -->
+                                <i class="mdui-icon material-icons" style="color: gray;">format_quote</i>
+                                <p>我是 易语言大蛇 & HTML 新手 ，请多多指教</p>
+                                <!-- <footer>马尔克斯 ——《百年孤独》</footer> -->
+                            </blockquote>
+                        </div>
+                    
+                    </div>
+                    <!-- 卡片的按钮 -->
+                    <div class="mdui-card-actions">
+                        <!-- <button class="mdui-btn mdui-ripple">action 1</button> -->
+                        <button class="mdui-btn mdui-ripple" mdui-tooltip="{content: '在新窗口中打开'}" onclick="openNewTab('https://space.bilibili.com/514279030')">哔哩哔哩</button>
+                        <button class="mdui-btn mdui-ripple" mdui-tooltip="{content: '在新窗口中打开'}" onclick="openNewTab('https://www.github.com/gytxtx')">GitHub</button>    
+
+                    </div>
+                         
+                </div>
+                    <br>
+                    <!-- 卡片与卡片之间分隔 -->
+
+                <!-- 单张卡片开始 -->
+                <div class="mdui-card">
+
+                    <!-- 卡片头部，包含头像、标题、副标题 -->
+                    <div class="mdui-card-header">
+                         <img class="mdui-card-header-avatar" src="./images/Peoples/Misaka.jpg"/>
+                         <div class="mdui-card-header-title">Misaka19090CN</div>
+                         <div class="mdui-card-header-subtitle" mdui-tooltip="{content: '暂无'}">暂无</div>
+                    </div>
+                    <div class="mdui-card-content">
+                    
+                        <div class="mdui-typo">
+                            <blockquote>
+                                <!-- <i class="mdui-icon material-icons">format_quote</i> -->
+                                <i class="mdui-icon material-icons" style="color: gray;">format_quote</i>
+                                <p>綾地ねね大好き。</p>
+                                <!-- <footer>马尔克斯 ——《百年孤独》</footer> -->
+                            </blockquote>
+                        </div>
+                    
+                    </div>
+                    <!-- 卡片的按钮 -->
+                    <div class="mdui-card-actions">
+                        <!-- <button class="mdui-btn mdui-ripple">action 1</button> -->
+                        <button class="mdui-btn mdui-ripple" mdui-tooltip="{content: '在新窗口中打开'}" onclick="openNewTab('https://space.bilibili.com/393175358')">哔哩哔哩</button>
+    
+                    </div>
+                         
+                </div>
+                    <br>
+                <!-- 卡片与卡片之间分隔 -->
+
+                <!-- 单张卡片开始 -->
+                <div class="mdui-card">
+
+                    <!-- 卡片头部，包含头像、标题、副标题 -->
+                    <div class="mdui-card-header">
+                         <img class="mdui-card-header-avatar" src="./images/Peoples/jibanjiang.png"/>
+                         <div class="mdui-card-header-title">羁绊妹妹</div>
+                         <div class="mdui-card-header-subtitle" mdui-tooltip="{content: '暂无'}">暂无</div>
+                    </div>
+                    <div class="mdui-card-content">
+                    
+                        <div class="mdui-typo">
+                            <blockquote>
+                                <!-- <i class="mdui-icon material-icons">format_quote</i> -->
+                                <i class="mdui-icon material-icons" style="color: gray;">format_quote</i>
+                                <p>这个人很懒，什么都没有写</p>
+                                <!-- <footer>马尔克斯 ——《百年孤独》</footer> -->
+                            </blockquote>
+                        </div>
+                    
+                    </div>
+                    <!-- 卡片的按钮 -->
+                    <div class="mdui-card-actions">
+                        <!-- <button class="mdui-btn mdui-ripple">action 1</button> -->
+                        <button class="mdui-btn mdui-ripple" mdui-tooltip="{content: '在新窗口中打开'}" onclick="openNewTab('https://space.bilibili.com/514279030')" disabled>哔哩哔哩</button>
+                        <button class="mdui-btn mdui-ripple" mdui-tooltip="{content: '在新窗口中打开'}" onclick="openNewTab('https://github.com/jibansst')">GitHub</button>    
+
+                    </div>
+                         
+                </div>
+                    <br>
+                <!-- 卡片与卡片之间分隔 -->
+
+                <!-- 单张卡片开始 -->
+                <div class="mdui-card">
+
+                    <!-- 卡片头部，包含头像、标题、副标题 -->
+                    <div class="mdui-card-header">
+                         <img class="mdui-card-header-avatar" src="./images/Peoples/Misaka.jpg"/>
+                         <div class="mdui-card-header-title">Misaka19090CN</div>
+                         <div class="mdui-card-header-subtitle" mdui-tooltip="{content: '暂无'}">暂无</div>
+                    </div>
+                    <div class="mdui-card-content">
+                    
+                        <div class="mdui-typo">
+                            <blockquote>
+                                <!-- <i class="mdui-icon material-icons">format_quote</i> -->
+                                <i class="mdui-icon material-icons" style="color: gray;">format_quote</i>
+                                <p>綾地ねね大好き。</p>
+                                <!-- <footer>马尔克斯 ——《百年孤独》</footer> -->
+                            </blockquote>
+                        </div>
+                    
+                    </div>
+                    <!-- 卡片的按钮 -->
+                    <div class="mdui-card-actions">
+                        <!-- <button class="mdui-btn mdui-ripple">action 1</button> -->
+                        <button class="mdui-btn mdui-ripple" mdui-tooltip="{content: '在新窗口中打开'}" onclick="openNewTab('https://space.bilibili.com/393175358')">哔哩哔哩</button>
+    
+                    </div>
+                         
+                </div>
+                    <br>
+                <!-- 卡片与卡片之间分隔 -->
+
+
+            </div>
+    
+        </div>
+
+    <br>
+</div>
+
+<div class="mdui-bottom-nav mdui-color-theme" style="height: 70px;">
+    <div class="mdui-container mdui-valign">
+        <div class="mdui-row mdui-center">
+
+        </div>
+    </div>
+    <div style="position: absolute; bottom: 0px; left: 0px;">
+       <!-- <a href="/" target="_blank" class="mdui-btn mdui-ripple">Title> -->
+       <a href="/" class="mdui-btn mdui-ripple">Title</a>
+    </div>
+    <div style="position: absolute; bottom: -5px; right: 0px;">
+
+    </div>
+</div>
+
+</body>
+<!-- JavaScript 部分 -->
+<!-- 这一部分代码的作用：当调用这个函数的时候,会打开一个新标签页,参数是 `url` -->
+<script>
+    function openNewTab(url) {
+        window.open(url, '_blank');
+    }
+</script>
+
+<!-- JavaScript 部分 -->
+<!-- [已废弃]这部分代码的作用：简易的音频播放/暂停状态切换(检测到音频控件播放时暂停，反之亦然。) -->
+<!-- <script>
+function toggleBackgroundMusic() {
+    var audioElement = document.getElementById('backgroundMusic');
+    
+    // 判断当前音频是否处于播放/暂停状态，并切换到相反的状态
+    if (audioElement.paused) {
+        audioElement.play();
+    } else {
+        audioElement.pause();
+    }
+}
+</script> -->
+
+<script>
+// 获取页面中已存在的背景音乐音频元素
+let audioElement = document.getElementById('backgroundMusic'); // 假设你已经有了 audio 元素(划掉,这个是通义灵码生成的注释)
+let musicIcon = document.getElementById('musicIcon'); // 获取用于控制音乐播放/暂停的图标元素
+// 定义切换背景音乐播放状态的函数
+function toggleBackgroundMusic() {
+    if (audioElement.paused) { // 检测音乐控件是否处于暂停状态
+        audioElement.play(); // 如果音乐控件是暂停状态,就播放它
+        musicIcon.className = 'mdui-icon material-icons'; // 设置组件类名(x2)
+        musicIcon.textContent = 'pause'; // 更改为暂停图标(pause)
+    } else {
+        audioElement.pause(); // 如果音乐播放,就暂停它
+        musicIcon.className = 'mdui-icon material-icons'; // 设置组件类名
+        musicIcon.textContent = 'music_note'; // 恢复为音乐图标(music_note),这个是 MDUI 的图标库
+    }
+}
+
+</script>
+<!-- 控制刷新页面 -->
+<!-- 这一部分代码的作用：当调用这个函数时，自动刷新此页面。 -->
+<script>
+    function refreshPage() {
+        window.location.reload();
+    }
+</script>
